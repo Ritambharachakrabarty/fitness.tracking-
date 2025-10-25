@@ -179,6 +179,13 @@ def delete_goal(goal_id):
         return jsonify({'message': 'Goal deleted successfully'})
 
 # --- CORRECTED STARTUP LOGIC ---
+from flask import send_from_directory
+
+@app.route('/')
+def serve_frontend():
+    return send_from_directory('.', 'index.html')
+    
 if __name__ == '__main__':
     init_db()  # Call this every time to ensure tables exist
+
     app.run(debug=True, port=5000)
